@@ -21,11 +21,10 @@ go_library(
         "//pkg/urpc",
         "//runsc/boot",
         "//runsc/cgroup",
-        "//runsc/console",
         "//runsc/specutils",
         "@com_github_cenkalti_backoff//:go_default_library",
         "@com_github_opencontainers_runtime-spec//specs-go:go_default_library",
         "@com_github_syndtr_gocapability//capability:go_default_library",
-        "@com_github_vishvananda_netlink//:go_default_library",
+#        "@com_github_vishvananda_netlink//:go_default_library",
     ],
 )

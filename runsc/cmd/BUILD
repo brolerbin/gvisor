@@ -41,7 +41,6 @@ go_library(
         "//pkg/unet",
         "//pkg/urpc",
         "//runsc/boot",
-        "//runsc/console",
         "//runsc/container",
         "//runsc/fsgofer",
         "//runsc/fsgofer/filter",

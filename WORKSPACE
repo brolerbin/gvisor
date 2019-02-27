@@ -84,17 +84,17 @@ go_repository(
     commit = "d98352740cb2c55f81556b63d4a1ec64c5a319c2",
 )
 
-go_repository(
-    name = "com_github_vishvananda_netlink",
-    importpath = "github.com/vishvananda/netlink",
-    commit = "d35d6b58e1cb692b27b94fc403170bf44058ac3e",
-)
+#go_repository(
+#    name = "com_github_vishvananda_netlink",
+#    importpath = "github.com/vishvananda/netlink",
+#    commit = "d35d6b58e1cb692b27b94fc403170bf44058ac3e",
+#)
 
-go_repository(
-    name = "com_github_vishvananda_netns",
-    importpath = "github.com/vishvananda/netns",
-    commit = "be1fbeda19366dea804f00efff2dd73a1642fdcc",
-)
+#go_repository(
+#    name = "com_github_vishvananda_netns",
+#    importpath = "github.com/vishvananda/netns",
+#    commit = "be1fbeda19366dea804f00efff2dd73a1642fdcc",
+#)
 
 go_repository(
     name = "org_golang_x_net",
