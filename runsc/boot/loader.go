@@ -39,7 +39,7 @@ import (
 	"gvisor.googlesource.com/gvisor/pkg/sentry/loader"
 	"gvisor.googlesource.com/gvisor/pkg/sentry/platform"
 	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/kvm"
-	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/ptrace"
+//	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/ptrace"
 	"gvisor.googlesource.com/gvisor/pkg/sentry/sighandling"
 	slinux "gvisor.googlesource.com/gvisor/pkg/sentry/syscalls/linux"
 	"gvisor.googlesource.com/gvisor/pkg/sentry/time"
@@ -390,9 +390,9 @@ func (l *Loader) Destroy() {
 
 func createPlatform(conf *Config, deviceFD int) (platform.Platform, error) {
 	switch conf.Platform {
-	case PlatformPtrace:
-		log.Infof("Platform: ptrace")
-		return ptrace.New()
+//	case PlatformPtrace:
+//		log.Infof("Platform: ptrace")
+//		return ptrace.New()
 	case PlatformKVM:
 		log.Infof("Platform: kvm")
 		if deviceFD < 0 {

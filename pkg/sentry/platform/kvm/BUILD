@@ -63,7 +63,7 @@ go_library(
         "//pkg/sentry/platform/procid",
         "//pkg/sentry/platform/ring0",
         "//pkg/sentry/platform/ring0/pagetables",
-        "//pkg/sentry/platform/safecopy",
+        #"//pkg/sentry/platform/safecopy",
         "//pkg/sentry/time",
         "//pkg/sentry/usermem",
     ],

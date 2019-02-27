@@ -24,7 +24,7 @@ import (
 	"gvisor.googlesource.com/gvisor/pkg/seccomp"
 	"gvisor.googlesource.com/gvisor/pkg/sentry/platform"
 	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/kvm"
-	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/ptrace"
+//	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/ptrace"
 )
 
 // Options are seccomp filter related options.
@@ -49,8 +49,8 @@ func Install(opt Options) error {
 	}
 
 	switch p := opt.Platform.(type) {
-	case *ptrace.PTrace:
-		s.Merge(ptraceFilters())
+//	case *ptrace.PTrace:
+//		s.Merge(ptraceFilters())
 	case *kvm.KVM:
 		s.Merge(kvmFilters())
 	default:

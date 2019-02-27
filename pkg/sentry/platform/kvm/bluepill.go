@@ -20,7 +20,7 @@ import (
 	"syscall"
 
 	"gvisor.googlesource.com/gvisor/pkg/sentry/arch"
-	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/safecopy"
+//	"gvisor.googlesource.com/gvisor/pkg/sentry/platform/safecopy"
 )
 
 // bluepill enters guest mode.
@@ -74,10 +74,10 @@ func (c *vCPU) die(context *arch.SignalContext64, msg string) {
 
 func init() {
 	// Install the handler.
-	if err := safecopy.ReplaceSignalHandler(syscall.SIGSEGV, reflect.ValueOf(sighandler).Pointer(), &savedHandler); err != nil {
+/*	if err := safecopy.ReplaceSignalHandler(syscall.SIGSEGV, reflect.ValueOf(sighandler).Pointer(), &savedHandler); err != nil {
 		panic(fmt.Sprintf("Unable to set handler for signal %d: %v", syscall.SIGSEGV, err))
 	}
-
+*/
 	// Extract the address for the trampoline.
 	dieTrampolineAddr = reflect.ValueOf(dieTrampoline).Pointer()
 }
