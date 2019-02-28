@@ -19,9 +19,9 @@
 package fdnotifier
 
 import (
-	"fmt"
+//	"fmt"
 	"sync"
-	"syscall"
+//	"syscall"
 
 	"gvisor.googlesource.com/gvisor/pkg/waiter"
 )
@@ -48,6 +48,8 @@ type notifier struct {
 
 // newNotifier creates a new notifier object.
 func newNotifier() (*notifier, error) {
+	return nil,nil
+/*
 	epfd, err := syscall.EpollCreate1(0)
 	if err != nil {
 		return nil, err
@@ -61,10 +63,13 @@ func newNotifier() (*notifier, error) {
 	go w.waitAndNotify() // S/R-SAFE: no waiter exists during save / load.
 
 	return w, nil
+*/
 }
 
 // waitFD waits on mask for fd. The fdMap mutex must be hold.
 func (n *notifier) waitFD(fd int32, fi *fdInfo, mask waiter.EventMask) error {
+	return nil
+/*
 	if !fi.waiting && mask == 0 {
 		return nil
 	}
@@ -90,10 +95,12 @@ func (n *notifier) waitFD(fd int32, fi *fdInfo, mask waiter.EventMask) error {
 	}
 
 	return nil
+*/
 }
 
 // addFD adds an FD to the list of FDs observed by n.
 func (n *notifier) addFD(fd int32, queue *waiter.Queue) {
+/*
 	n.mu.Lock()
 	defer n.mu.Unlock()
 
@@ -103,11 +110,13 @@ func (n *notifier) addFD(fd int32, queue *waiter.Queue) {
 	}
 
 	// We have nothing to wait for at the moment. Just add it to the map.
-	n.fdMap[fd] = &fdInfo{queue: queue}
+	n.fdMap[fd] = &fdInfo{queue: queue}*/
 }
 
 // updateFD updates the set of events the fd needs to be notified on.
 func (n *notifier) updateFD(fd int32) error {
+	return nil
+/*
 	n.mu.Lock()
 	defer n.mu.Unlock()
 
@@ -116,31 +125,37 @@ func (n *notifier) updateFD(fd int32) error {
 	}
 
 	return nil
+*/
 }
 
 // RemoveFD removes an FD from the list of FDs observed by n.
 func (n *notifier) removeFD(fd int32) {
+/*
 	n.mu.Lock()
 	defer n.mu.Unlock()
 
 	// Remove from map, then from epoll object.
 	n.waitFD(fd, n.fdMap[fd], 0)
 	delete(n.fdMap, fd)
+*/
 }
 
 // hasFD returns true if the fd is in the list of observed FDs.
 func (n *notifier) hasFD(fd int32) bool {
+	return false
+/*
 	n.mu.Lock()
 	defer n.mu.Unlock()
 
 	_, ok := n.fdMap[fd]
-	return ok
+	return ok*/
 }
 
 // waitAndNotify run is its own goroutine and loops waiting for io event
 // notifications from the epoll object. Once notifications arrive, they are
 // dispatched to the registered queue.
 func (n *notifier) waitAndNotify() error {
+/*
 	e := make([]syscall.EpollEvent, 100)
 	for {
 		v, err := epollWait(n.epFD, e, -1)
@@ -160,6 +175,8 @@ func (n *notifier) waitAndNotify() error {
 		}
 		n.mu.Unlock()
 	}
+*/
+	return nil
 }
 
 var shared struct {

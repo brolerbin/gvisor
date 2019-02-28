@@ -15,8 +15,8 @@
 package fdnotifier
 
 import (
-	"syscall"
-	"unsafe"
+//	"syscall"
+//	"unsafe"
 
 	"gvisor.googlesource.com/gvisor/pkg/waiter"
 )
@@ -24,6 +24,8 @@ import (
 // NonBlockingPoll polls the given FD in non-blocking fashion. It is used just
 // to query the FD's current state.
 func NonBlockingPoll(fd int32, mask waiter.EventMask) waiter.EventMask {
+	return 0;
+/*
 	e := struct {
 		fd      int32
 		events  int16
@@ -53,12 +55,14 @@ func NonBlockingPoll(fd int32, mask waiter.EventMask) waiter.EventMask {
 		// Otherwise we got the ready events in the revents field.
 		return waiter.EventMask(e.revents)
 	}
+*/
 }
 
 // epollWait performs a blocking wait on epfd.
 //
 // Preconditions:
 //  * len(events) > 0
+/*
 func epollWait(epfd int, events []syscall.EpollEvent, msec int) (int, error) {
 	if len(events) == 0 {
 		panic("Empty events passed to EpollWait")
@@ -71,4 +75,4 @@ func epollWait(epfd int, events []syscall.EpollEvent, msec int) (int, error) {
 		return 0, e
 	}
 	return int(r), nil
-}
+}*/

@@ -15,14 +15,16 @@
 package memutil
 
 import (
-	"syscall"
-	"unsafe"
+//	"syscall"
+//	"unsafe"
 
-	"golang.org/x/sys/unix"
+//	"golang.org/x/sys/unix"
 )
 
 // CreateMemFD creates a memfd file and returns the fd.
 func CreateMemFD(name string, flags int) (fd int, err error) {
+	return -1,-1
+/*
 	p, err := syscall.BytePtrFromString(name)
 	if err != nil {
 		return -1, err
@@ -31,5 +33,5 @@ func CreateMemFD(name string, flags int) (fd int, err error) {
 	if e0 != 0 {
 		return -1, e0
 	}
-	return int(r0), nil
+	return int(r0), nil*/
 }

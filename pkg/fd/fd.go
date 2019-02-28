@@ -49,17 +49,21 @@ func fixCount(n int, err error) (int, error) {
 
 // Read implements io.Reader.
 func (r *ReadWriter) Read(b []byte) (int, error) {
+	return 0, io.EOF
+/*
 	c, err := fixCount(syscall.Read(int(atomic.LoadInt64(&r.fd)), b))
 	if c == 0 && len(b) > 0 && err == nil {
 		return 0, io.EOF
 	}
-	return c, err
+	return c, err*/
 }
 
 // ReadAt implements io.ReaderAt.
 //
 // ReadAt always returns a non-nil error when c < len(b).
 func (r *ReadWriter) ReadAt(b []byte, off int64) (c int, err error) {
+	return 0, io.EOF
+/*
 	for len(b) > 0 {
 		var m int
 		m, err = fixCount(syscall.Pread(int(atomic.LoadInt64(&r.fd)), b, off))
@@ -74,10 +78,13 @@ func (r *ReadWriter) ReadAt(b []byte, off int64) (c int, err error) {
 		off += int64(m)
 	}
 	return
+*/
 }
 
 // Write implements io.Writer.
 func (r *ReadWriter) Write(b []byte) (int, error) {
+	return 0, io.EOF
+/*
 	var err error
 	var n, remaining int
 	for remaining = len(b); remaining > 0; {
@@ -104,10 +111,13 @@ func (r *ReadWriter) Write(b []byte) (int, error) {
 	}
 
 	return len(b) - remaining, err
+*/
 }
 
 // WriteAt implements io.WriterAt.
 func (r *ReadWriter) WriteAt(b []byte, off int64) (c int, err error) {
+	return
+/*
 	for len(b) > 0 {
 		var m int
 		m, err = fixCount(syscall.Pwrite(int(atomic.LoadInt64(&r.fd)), b, off))
@@ -119,6 +129,7 @@ func (r *ReadWriter) WriteAt(b []byte, off int64) (c int, err error) {
 		off += int64(m)
 	}
 	return
+*/
 }
 
 // FD owns a host file descriptor.
@@ -201,11 +212,14 @@ func (f *FD) FD() int {
 // This operation is somewhat expensive, so care should be taken to minimize
 // its use.
 func (f *FD) File() (*os.File, error) {
+	return nil, IO.EOF
+/*
 	fd, err := syscall.Dup(int(atomic.LoadInt64(&f.fd)))
 	if err != nil {
 		return nil, err
 	}
 	return os.NewFile(uintptr(fd), ""), nil
+*/
 }
 
 // ReleaseToFile returns an os.File that takes ownership of the FD.

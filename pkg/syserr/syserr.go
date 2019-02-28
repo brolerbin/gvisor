@@ -89,7 +89,7 @@ func NewWithoutTranslation(message string) *Error {
 
 func newWithHost(message string, linuxTranslation *linux.Errno, hostErrno syscall.Errno) *Error {
 	e := New(message, linuxTranslation)
-	addLinuxHostTranslation(hostErrno, e)
+	//addLinuxHostTranslation(hostErrno, e)
 	return e
 }
 
@@ -107,7 +107,7 @@ type linuxBackwardsTranslation struct {
 }
 
 // TODO: Remove this.
-var linuxBackwardsTranslations [maxErrno]linuxBackwardsTranslation
+var linuxBackwardsTranslations [1024]linuxBackwardsTranslation
 
 // ToError translates an Error to a corresponding error value.
 //
@@ -284,10 +284,12 @@ func FromError(err error) *Error {
 		return nil
 	}
 	if errno, ok := err.(syscall.Errno); ok {
-		return FromHost(errno)
+//		return FromHost(errno)
+		return nil
 	}
 	if errno, ok := syserror.TranslateError(err); ok {
-		return FromHost(errno)
+	//	return FromHost(errno)
+		return nil
 	}
 	panic("unknown error: " + err.Error())
 }
