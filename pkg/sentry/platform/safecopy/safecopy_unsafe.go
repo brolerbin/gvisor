@@ -283,6 +283,7 @@ func errorFromFaultSignal(addr unsafe.Pointer, sig int32) error {
 // handler however, and if this is function is being used externally then the
 // same courtesy is expected.
 func ReplaceSignalHandler(sig syscall.Signal, handler uintptr, previous *uintptr) error {
+/*
 	var sa struct {
 		handler  uintptr
 		flags    uint64
@@ -310,6 +311,6 @@ func ReplaceSignalHandler(sig syscall.Signal, handler uintptr, previous *uintptr
 	if _, _, e := syscall.RawSyscall6(syscall.SYS_RT_SIGACTION, uintptr(sig), uintptr(unsafe.Pointer(&sa)), 0, maskLen, 0, 0); e != 0 {
 		return e
 	}
-
+*/
 	return nil
 }
