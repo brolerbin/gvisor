@@ -52,7 +52,7 @@ go_library(
         "//pkg/sentry/loader",
         "//pkg/sentry/platform",
         "//pkg/sentry/platform/kvm",
-#        "//pkg/sentry/platform/ptrace",
+        "//pkg/sentry/platform/ptrace",
         "//pkg/sentry/sighandling",
         "//pkg/sentry/socket/epsocket",
         "//pkg/sentry/socket/hostinet",

@@ -30,7 +30,7 @@ go_library(
         "//pkg/log",
         "//pkg/sentry/arch",
         "//pkg/sentry/context",
-#        "//pkg/sentry/platform/safecopy",
+        "//pkg/sentry/platform/safecopy",
         "//pkg/sentry/safemem",
         "//pkg/sentry/usage",
         "//pkg/sentry/usermem",

@@ -21,7 +21,7 @@ go_library(
         "//pkg/seccomp",
         "//pkg/sentry/platform",
         "//pkg/sentry/platform/kvm",
-#        "//pkg/sentry/platform/ptrace",
+        "//pkg/sentry/platform/ptrace",
         "//pkg/tcpip/link/fdbased",
         "@org_golang_x_sys//unix:go_default_library",
     ],
