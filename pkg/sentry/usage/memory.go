@@ -19,10 +19,10 @@ import (
 	"os"
 	"sync"
 	"sync/atomic"
-	"syscall"
+//	"syscall"
 
 	"gvisor.googlesource.com/gvisor/pkg/bits"
-	"gvisor.googlesource.com/gvisor/pkg/sentry/memutil"
+//	"gvisor.googlesource.com/gvisor/pkg/sentry/memutil"
 )
 
 // MemoryKind represents a type of memory used by the application.
@@ -119,6 +119,8 @@ type MemoryLocked struct {
 
 // Init initializes global 'MemoryAccounting'.
 func Init() error {
+	return nil
+/*
 	const name = "memory-usage"
 	fd, err := memutil.CreateMemFD(name, 0)
 	if err != nil {
@@ -145,6 +147,7 @@ func Init() error {
 		RTMemoryStats: RTMemoryStatsPointer(mmap),
 	}
 	return nil
+*/
 }
 
 // MemoryAccounting is the global memory stats.

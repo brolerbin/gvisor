@@ -16,12 +16,12 @@
 package fd
 
 import (
-	"fmt"
+//	"fmt"
 	"io"
 	"os"
 	"runtime"
 	"sync/atomic"
-	"syscall"
+//	"syscall"
 )
 
 // ReadWriter implements io.ReadWriter, io.ReaderAt, and io.WriterAt for fd. It
@@ -168,6 +168,7 @@ func New(fd int) *FD {
 //
 // The returned FD is always blocking (Go 1.9+).
 func NewFromFile(file *os.File) (*FD, error) {
+/*
 	fd, err := syscall.Dup(int(file.Fd()))
 	// Technically, the runtime may call the finalizer on file as soon as
 	// Fd() returns.
@@ -176,7 +177,10 @@ func NewFromFile(file *os.File) (*FD, error) {
 		return &FD{ReadWriter{-1}}, err
 	}
 	return New(fd), nil
+*/
+	return nil,nil
 }
+
 
 // Close closes the file descriptor contained in the FD.
 //
@@ -185,16 +189,20 @@ func NewFromFile(file *os.File) (*FD, error) {
 //
 // Concurrently calling Close and any other method is undefined.
 func (f *FD) Close() error {
-	runtime.SetFinalizer(f, nil)
-	return syscall.Close(int(atomic.SwapInt64(&f.fd, -1)))
+	return nil
+
+//	runtime.SetFinalizer(f, nil)
+//	return syscall.Close(int(atomic.SwapInt64(&f.fd, -1)))
 }
 
 // Release relinquishes ownership of the contained file descriptor.
 //
 // Concurrently calling Release and any other method is undefined.
 func (f *FD) Release() int {
-	runtime.SetFinalizer(f, nil)
-	return int(atomic.SwapInt64(&f.fd, -1))
+	return 0
+
+//	runtime.SetFinalizer(f, nil)
+//	return int(atomic.SwapInt64(&f.fd, -1))
 }
 
 // FD returns the file descriptor owned by FD. FD retains ownership.
@@ -212,7 +220,7 @@ func (f *FD) FD() int {
 // This operation is somewhat expensive, so care should be taken to minimize
 // its use.
 func (f *FD) File() (*os.File, error) {
-	return nil, IO.EOF
+	return nil, nil
 /*
 	fd, err := syscall.Dup(int(atomic.LoadInt64(&f.fd)))
 	if err != nil {

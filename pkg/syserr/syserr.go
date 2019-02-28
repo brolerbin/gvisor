@@ -283,13 +283,13 @@ func FromError(err error) *Error {
 	if err == nil {
 		return nil
 	}
-	if errno, ok := err.(syscall.Errno); ok {
+//	if errno, ok := err.(syscall.Errno); ok {
 //		return FromHost(errno)
-		return nil
-	}
-	if errno, ok := syserror.TranslateError(err); ok {
+//		return nil
+//	}
+//	if errno, ok := syserror.TranslateError(err); ok {
 	//	return FromHost(errno)
-		return nil
-	}
+//		return nil
+//	}
 	panic("unknown error: " + err.Error())
 }

@@ -15,12 +15,12 @@
 package sighandling
 
 import (
-	"fmt"
-	"runtime"
-	"syscall"
-	"unsafe"
+//	"fmt"
+//	"runtime"
+//	"syscall"
+//	"unsafe"
 
-	"gvisor.googlesource.com/gvisor/pkg/abi/linux"
+//	"gvisor.googlesource.com/gvisor/pkg/abi/linux"
 )
 
 // TODO: Move to pkg/abi/linux along with definitions in
@@ -35,6 +35,7 @@ type sigaction struct {
 // IgnoreChildStop sets the SA_NOCLDSTOP flag, causing child processes to not
 // generate SIGCHLD when they stop.
 func IgnoreChildStop() error {
+/*
 	var sa sigaction
 
 	// Get the existing signal handler information, and set the flag.
@@ -45,13 +46,14 @@ func IgnoreChildStop() error {
 	if _, _, e := syscall.RawSyscall6(syscall.SYS_RT_SIGACTION, uintptr(syscall.SIGCHLD), uintptr(unsafe.Pointer(&sa)), 0, linux.SignalSetSize, 0, 0); e != 0 {
 		return e
 	}
-
+*/
 	return nil
 }
 
 // dieFromSignal kills the current process with sig.
 //
 // Preconditions: The default action of sig is termination.
+/*
 func dieFromSignal(sig linux.Signal) {
 	runtime.LockOSThread()
 	defer runtime.UnlockOSThread()
@@ -71,4 +73,6 @@ func dieFromSignal(sig linux.Signal) {
 	}
 
 	panic("failed to die")
+
 }
+*/

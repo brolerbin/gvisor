@@ -23,7 +23,7 @@ import (
 
 // CreateMemFD creates a memfd file and returns the fd.
 func CreateMemFD(name string, flags int) (fd int, err error) {
-	return -1,-1
+	return -1,nil
 /*
 	p, err := syscall.BytePtrFromString(name)
 	if err != nil {

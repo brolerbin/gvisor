@@ -15,13 +15,14 @@
 package unet
 
 import (
-	"io"
+/*	"io"
 	"math"
 	"sync/atomic"
 	"syscall"
 	"unsafe"
 
 	"gvisor.googlesource.com/gvisor/pkg/abi/linux"
+*/
 )
 
 // wait blocks until the socket FD is ready for reading or writing, depending
@@ -29,6 +30,8 @@ import (
 //
 // Returns errClosing if the Socket is in the process of closing.
 func (s *Socket) wait(write bool) error {
+	return nil
+/*
 	for {
 		// Checking the FD on each loop is not strictly necessary, it
 		// just avoids an extra poll call.
@@ -68,12 +71,16 @@ func (s *Socket) wait(write bool) error {
 
 		return nil
 	}
+*/
 }
 
 // buildIovec builds an iovec slice from the given []byte slice.
 //
 // iovecs is used as an initial slice, to avoid excessive allocations.
+/*
 func buildIovec(bufs [][]byte, iovecs []syscall.Iovec) ([]syscall.Iovec, int) {
+	return nil,0
+
 	var length int
 	for i := range bufs {
 		if l := len(bufs[i]); l > 0 {
@@ -85,8 +92,9 @@ func buildIovec(bufs [][]byte, iovecs []syscall.Iovec) ([]syscall.Iovec, int) {
 		}
 	}
 	return iovecs, length
-}
 
+}
+*/
 // ReadVec reads into the pre-allocated bufs. Returns bytes read.
 //
 // The pre-allocatted space used by ReadVec is based upon slice lengths.
@@ -94,6 +102,9 @@ func buildIovec(bufs [][]byte, iovecs []syscall.Iovec) ([]syscall.Iovec, int) {
 // This function is not guaranteed to read all available data, it
 // returns as soon as a single recvmsg call succeeds.
 func (r *SocketReader) ReadVec(bufs [][]byte) (int, error) {
+	return 0,nil
+/*
+
 	iovecs, length := buildIovec(bufs, make([]syscall.Iovec, 0, 2))
 
 	var msg syscall.Msghdr
@@ -178,6 +189,7 @@ func (r *SocketReader) ReadVec(bufs [][]byte) (int, error) {
 	}
 
 	return int(n), nil
+*/
 }
 
 // WriteVec writes the bufs to the socket. Returns bytes written.
@@ -185,6 +197,8 @@ func (r *SocketReader) ReadVec(bufs [][]byte) (int, error) {
 // This function is not guaranteed to send all data, it returns
 // as soon as a single sendmsg call succeeds.
 func (w *SocketWriter) WriteVec(bufs [][]byte) (int, error) {
+	return 0,nil
+/*
 	iovecs, _ := buildIovec(bufs, make([]syscall.Iovec, 0, 2))
 
 	if w.race != nil {
@@ -243,10 +257,13 @@ func (w *SocketWriter) WriteVec(bufs [][]byte) (int, error) {
 		}
 	}
 	// Unreachable, no s.gate.Leave needed.
+*/
 }
 
 // getsockopt issues a getsockopt syscall.
 func getsockopt(fd int, level int, optname int, buf []byte) (uint32, error) {
+	return 0,nil
+/*
 	l := uint32(len(buf))
 	_, _, e := syscall.RawSyscall6(syscall.SYS_GETSOCKOPT, uintptr(fd), uintptr(level), uintptr(optname), uintptr(unsafe.Pointer(&buf[0])), uintptr(unsafe.Pointer(&l)), 0)
 	if e != 0 {
@@ -254,20 +271,26 @@ func getsockopt(fd int, level int, optname int, buf []byte) (uint32, error) {
 	}
 
 	return l, nil
+*/
 }
 
 // setsockopt issues a setsockopt syscall.
 func setsockopt(fd int, level int, optname int, buf []byte) error {
+	return nil
+/*
 	_, _, e := syscall.RawSyscall6(syscall.SYS_SETSOCKOPT, uintptr(fd), uintptr(level), uintptr(optname), uintptr(unsafe.Pointer(&buf[0])), uintptr(len(buf)), 0)
 	if e != 0 {
 		return e
 	}
 
 	return nil
+*/
 }
 
 // getsockname issues a getsockname syscall.
 func getsockname(fd int, buf []byte) (uint32, error) {
+	return 0,nil
+/*
 	l := uint32(len(buf))
 	_, _, e := syscall.RawSyscall(syscall.SYS_GETSOCKNAME, uintptr(fd), uintptr(unsafe.Pointer(&buf[0])), uintptr(unsafe.Pointer(&l)))
 	if e != 0 {
@@ -275,10 +298,13 @@ func getsockname(fd int, buf []byte) (uint32, error) {
 	}
 
 	return l, nil
+*/
 }
 
 // getpeername issues a getpeername syscall.
 func getpeername(fd int, buf []byte) (uint32, error) {
+	return 0,nil
+/*
 	l := uint32(len(buf))
 	_, _, e := syscall.RawSyscall(syscall.SYS_GETPEERNAME, uintptr(fd), uintptr(unsafe.Pointer(&buf[0])), uintptr(unsafe.Pointer(&l)))
 	if e != 0 {
@@ -286,4 +312,5 @@ func getpeername(fd int, buf []byte) (uint32, error) {
 	}
 
 	return l, nil
+*/
 }

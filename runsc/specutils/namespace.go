@@ -31,7 +31,7 @@ import (
 // nsCloneFlag returns the clone flag that can be used to set a namespace of
 // the given type.
 func nsCloneFlag(nst specs.LinuxNamespaceType) uintptr {
-	switch nst {
+/*	switch nst {
 	case specs.IPCNamespace:
 		return syscall.CLONE_NEWIPC
 	case specs.MountNamespace:
@@ -49,6 +49,8 @@ func nsCloneFlag(nst specs.LinuxNamespaceType) uintptr {
 	default:
 		panic(fmt.Sprintf("unknown namespace %v", nst))
 	}
+*/
+	return 0;
 }
 
 // nsPath returns the path of the namespace for the current process and the

@@ -15,7 +15,7 @@
 package usermem
 
 import (
-	"syscall"
+//	"syscall"
 )
 
 // AccessType specifies memory access types. This is used for
@@ -56,6 +56,8 @@ func (a AccessType) Any() bool {
 
 // Prot returns the system prot (syscall.PROT_READ, etc.) for this access.
 func (a AccessType) Prot() int {
+	return 0
+/*
 	var prot int
 	if a.Read {
 		prot |= syscall.PROT_READ
@@ -67,6 +69,7 @@ func (a AccessType) Prot() int {
 		prot |= syscall.PROT_EXEC
 	}
 	return prot
+*/
 }
 
 // SupersetOf returns true iff the access types in a are a superset of the
